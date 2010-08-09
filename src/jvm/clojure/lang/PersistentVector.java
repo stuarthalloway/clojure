@@ -18,16 +18,17 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class PersistentVector extends APersistentVector implements IObj, IEditableCollection{
 
-static class Node implements Serializable {
+// public use for Clojure only    
+static public class Node implements Serializable {
 	transient final AtomicReference<Thread> edit;
 	final Object[] array;
 
-	Node(AtomicReference<Thread> edit, Object[] array){
+	public Node(AtomicReference<Thread> edit, Object[] array){
 		this.edit = edit;
 		this.array = array;
 	}
 
-	Node(AtomicReference<Thread> edit){
+	public Node(AtomicReference<Thread> edit){
 		this.edit = edit;
 		this.array = new Object[32];
 	}
