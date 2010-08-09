@@ -81,13 +81,14 @@
   <target name="compile-java" depends="init"
           description="Compile Java sources.">
     <javac srcdir="${jsrc}" destdir="${build}" includeJavaRuntime="yes"
+           classpath="lib/jsr166y.jar"
            debug="true" target="1.5"/>
   </target>
 
   <target name="compile-clojure" depends="compile-java"
           description="Compile Clojure sources.">
     <java classname="clojure.lang.Compile"
-          classpath="${build}:${cljsrc}"
+          classpath="${build}:${cljsrc}:lib/jsr166y.jar"
           failonerror="true">
       <sysproperty key="clojure.compile.path" value="${build}"/>
       <!-- <sysproperty key="clojure.compile.warn-on-reflection" value="true"/> -->
@@ -112,6 +113,7 @@
       <arg value="clojure.java.shell"/>
       <arg value="clojure.java.browse-ui"/>
       <arg value="clojure.string"/>
+      <!-- <arg value="clojure.par"/> -->
     </java>
   </target>
 

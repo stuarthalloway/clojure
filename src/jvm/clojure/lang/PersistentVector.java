@@ -20,8 +20,8 @@ public class PersistentVector extends APersistentVector implements IObj, IEditab
 
 // public use for Clojure only    
 static public class Node implements Serializable {
-	transient final AtomicReference<Thread> edit;
-	final Object[] array;
+	public transient final AtomicReference<Thread> edit;
+	public final Object[] array;
 
 	public Node(AtomicReference<Thread> edit, Object[] array){
 		this.edit = edit;
@@ -37,10 +37,10 @@ static public class Node implements Serializable {
 final static AtomicReference<Thread> NOEDIT = new AtomicReference<Thread>(null);
 final static Node EMPTY_NODE = new Node(NOEDIT, new Object[32]);
 
-final int cnt;
-final int shift;
-final Node root;
-final Object[] tail;
+public final int cnt;
+public final int shift;
+public final Node root;
+public final Object[] tail;
 final IPersistentMap _meta;
 
 
@@ -67,7 +67,7 @@ static public PersistentVector create(Object... items){
 	return ret.persistent();
 }
 
-PersistentVector(int cnt, int shift, Node root, Object[] tail){
+public PersistentVector(int cnt, int shift, Node root, Object[] tail){
 	this._meta = null;
 	this.cnt = cnt;
 	this.shift = shift;
